@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from model import TabelaSpice
+
 
 st.set_page_config(
                     page_title="Calculadora de Frete",
