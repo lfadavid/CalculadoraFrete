@@ -13,61 +13,6 @@ st.set_page_config(
                     #initial_sidebar_state="collapsed" # inicia com barra de filtros fechada
 )
 
-hide_github_icon = """
-#GithubIcon {
-  visibility: hidden;
-}
-"""
-
-def hide_anchor_link():
-    st.markdown(
-        body="""
-        <style>
-            h1 > div > a {
-                display: none;
-            }
-            h2 > div > a {
-                display: none;
-            }
-            h3 > div > a {
-                display: none;
-            }
-            h4 > div > a {
-                display: none;
-            }
-            h5 > div > a {
-                display: none;
-            }
-            h6 > div > a {
-                display: none;
-            }
-        </style>
-        """,
-         unsafe_allow_html=True,
-)
-
-#Editar a Imagem da Cotralti e deixar ela centralizada
-st.markdown(
-    """
-    <style>
-        [data-testid=stSidebar] [data-testid=stImage]{
-            text-align: center;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width:50%;
-        }
-    </style>
-    """, unsafe_allow_html=True
-)
-
-hide_github_icon = """
-#GithubIcon {
-  visibility: hidden;
-   display:none;
-    opacity:0;
-}
-"""
 st.header("Calculadora de :blue[Frete] ", divider='green')
 
 #df = pd.DataFrame(TabelaSpice)
