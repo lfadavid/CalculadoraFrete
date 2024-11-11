@@ -48,8 +48,8 @@ def calcular_frete(rota_digitada, peso_digitado, ):
     
    
      # Obter os valores mínimos e as faixas de peso
-    peso_minimo = df_filtro['Peso_Mínimo'].values[0]
-    frete_minimo = df_filtro['Frete_Mínimo'].values[0]
+    peso_minimo = df_filtro['Peso Mínimo'].values[0]
+    frete_minimo = df_filtro['Frete Mínimo'].values[0]
     
     
     if rota_digitada == 'ARCRS05' or rota_digitada == 'ARCRS06' or rota_digitada == 'ARCSC07':
@@ -57,30 +57,30 @@ def calcular_frete(rota_digitada, peso_digitado, ):
         if peso_digitado <= peso_minimo:
             return frete_minimo
         elif peso_digitado > peso_minimo and peso_digitado <= 1000:
-            return df_filtro['Até_1.000'].values[0]
+            return df_filtro['Até 1.000'].values[0]
         elif peso_digitado >= 1001 and peso_digitado <= 3000:
-            return df_filtro['1.001_3.000'].values[0]
+            return df_filtro['1.001 a 3.000'].values[0]
         elif peso_digitado >=3001 and peso_digitado <= 6000:
-            return df_filtro['3.001_6.000'].values[0]
+            return df_filtro['3.001 a 6.000'].values[0]
         elif peso_digitado >=6001 and peso_digitado <= 13000:
-            return df_filtro['6.001_13.000'].values[0]
+            return df_filtro['6.001 a 13.000'].values[0]
         else:
-            return df_filtro['Acima_13.001'].values[0] 
+            return df_filtro['Acima 13.001'].values[0] 
     
     if rota_digitada != 'ARCRS05' or rota_digitada != 'ARCRS06' or rota_digitada != 'ARCSC07':
     # Verificar a faixa de peso
         if peso_digitado <= peso_minimo:
             return frete_minimo
         elif peso_digitado > peso_minimo and peso_digitado <= 1000:
-            return (df_filtro['Até_1.000'].values[0] /1000) * peso_digitado
+            return (df_filtro['Até 1.000'].values[0] /1000) * peso_digitado
         elif peso_digitado >= 1001 and peso_digitado <= 3000:
-            return (df_filtro['1.001_3.000'].values[0] /1000) * peso_digitado
+            return (df_filtro['1.001 a 3.000'].values[0] /1000) * peso_digitado
         elif peso_digitado >=3001 and peso_digitado <= 6000:
-            return (df_filtro['3.001_6.000'].values[0] /1000) * peso_digitado
+            return (df_filtro['3.001 a 6.000'].values[0] /1000) * peso_digitado
         elif peso_digitado >=6001 and peso_digitado <= 13000:
-            return (df_filtro['6.001_13.000'].values[0] / 1000) * peso_digitado
+            return (df_filtro['6.001 a 13.000'].values[0] / 1000) * peso_digitado
         else:
-            return (df_filtro['Acima_13.001'].values[0] / 1000) * peso_digitado
+            return (df_filtro['Acima 13.001'].values[0] / 1000) * peso_digitado
 
 
 if peso_digitado is not None and rota_digitada is not None:
@@ -91,8 +91,8 @@ if peso_digitado is not None and rota_digitada is not None:
         valor_frete = calcular_frete(rota_digitada , peso_digitado)
         fretepeso = (valor_frete)
         valorfretekg = fretepeso / peso_digitado
-        regiao = df_filtro["Destino_Regiões"].values[0]
-        taxanf = df_filtro["Taxa_NFE"].values[0]
+        regiao = df_filtro["Destino Regiões"].values[0]
+        taxanf = df_filtro["Taxa (R$ /NFE)"].values[0]
         tipo = df_filtro["Tipo"].values[0]
         adv = df_filtro["ADV(%)"].values[0]
                     
