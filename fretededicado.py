@@ -5,17 +5,6 @@ import pandas as pd
 def carregar_dados():
     df = pd.read_excel("FreteDedicado.xlsx")
     return df
-  
-
-
-#Cabeçalhos do sistemas
-
-st.set_page_config(
-                    page_title="Frete Dedicado",
-                    layout="wide", 
-                    page_icon="cotralti_logo.png",
-                    #initial_sidebar_state="collapsed" # inicia com barra de filtros fechada
-)
 
 st.header("Frete :blue[Dedicado] ", divider='green')
 
@@ -28,7 +17,6 @@ col1, col2 , col3 = st.columns([1,1,1])
 
 
 peso_digitado = coluna_esquerda.number_input(label="Digite o peso em Kg", min_value=0.0, placeholder="Digite o valor do peso", value=None)
-
 
   
 origem_local = coluna_meio.selectbox(
@@ -98,11 +86,12 @@ if peso_digitado is not None and origem_local is not None and tipo_carga is not 
     valor_frete = calcular_frete(origem_local , peso_digitado)
     fretepeso  = valor_frete
     prazoentrega = df_filtro_carga['Prazo_Entrega'].values[0]
-    cliente = df_filtro_carga['Cliente'].values[0]
-    destinoregioes = df_filtro_carga['Destino_Regiões'].values[0]
+    cliente = df_filtro_regioes['Cliente'].values[0]
+    destinoregioes = df_filtro_regioes['Destino_Regiões'].values[0]
+    estadodestino = df_filtro_regioes['UF'].values[0]
     origemlocal = df_filtro_carga['Origem_Local'].values[0]
     tipo = df_filtro_carga['Tipo'].values[0]
-    valorfretekg = fretepeso /1000
+    valorfretekg = fretepeso /peso_digitado
     st.divider()
     
     if fretepeso == 0:
@@ -118,15 +107,13 @@ if peso_digitado is not None and origem_local is not None and tipo_carga is not 
       st.divider()
         
       st.write(f"❶ O **Origem** é a **{origem_local}**.")
-      st.write(f"❷ O **Região** de Destino é   **{destinoregioes}** .")
+      st.write(f"❷ O **Região** de Destino é   **{destinoregioes}**  e o Estado é **{estadodestino}**.")
       st.write(f"❸ O **Cliente** de destino é **{cliente}**.")
       st.write(f"❹ Para calcular o **FRETE TOTAL** é necessário somar: ( **Frete + Taxa NF + ADValorem + Icms )**.")
       st.write(f"❺ O **ICMS** de transporte (_é o imposto que incide sobre o serviço de transporte de cargas, seja ele rodoviário, ferroviário, aéreo ou aquaviário_)  **RJ x RJ = 22%** , **RJ x _( SP, MG, PR, SC e RS )_ = 12%** .")
       st.write(f"❻ O Tipo da Carga é **{tipo}**.")
       st.divider()
-      st.write("""
-         &copy; 2024 - Luis Felipe A. David. Todos os direitos reservados
-         """) 
+
 else:
     st.button("Cᥲᥣᥴᥙᥣᥲr Frᥱtᥱ",disabled=True)
     
